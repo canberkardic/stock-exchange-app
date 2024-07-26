@@ -24,6 +24,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    private static final String[] WHITELIST = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+    };
+
     @Value("${security.users.admin.username}")
     private String adminUsername;
 
@@ -64,6 +73,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(h -> h.disable()).authorizeHttpRequests((authorize) -> {
             authorize
+                    .requestMatchers(WHITELIST).permitAll()
             .requestMatchers("/api/v1/**").authenticated()
                     .anyRequest().authenticated();
         }).httpBasic(httpBasic -> httpBasic
