@@ -3,6 +3,7 @@ package com.ardic.stockexchangeapp.controller;
 import com.ardic.stockexchangeapp.model.dto.CreateStockDTO;
 import com.ardic.stockexchangeapp.model.dto.UpdateStockPriceDTO;
 import com.ardic.stockexchangeapp.service.StockService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +14,24 @@ import org.springframework.web.bind.annotation.*;
 public class StockController {
     private final StockService stockService;
 
+
+    @Operation(summary = "Create a stock")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createStock(@RequestBody CreateStockDTO createStockDTO) {
         stockService.createStock(createStockDTO);
         return ResponseEntity.ok("Stock added.");
     }
 
+
+    @Operation(summary = "Update the price of a stock")
     @PutMapping
     public ResponseEntity<String> updateCurrentPrice(@RequestBody UpdateStockPriceDTO updateStockPriceDTO) {
         stockService.updateStockPrice(updateStockPriceDTO.getId(), updateStockPriceDTO.getUpdatedPrice());
         return ResponseEntity.ok("Stock price updated.");
     }
 
+
+    @Operation(summary = "Deleting a stock from the system")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStockByName(@PathVariable Long id) {
         stockService.deleteStock(id);
