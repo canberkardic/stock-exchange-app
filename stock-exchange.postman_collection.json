@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "cbd32461-5655-4f0b-acf0-6445a0df9aa6",
+		"name": "OpenAPI definition for Stock Exchange Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14544447"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "stock",
+							"item": [
+								{
+									"name": "Update the price of a stock",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"updatedPrice\": 175.000,\n  \"id\": 1\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create a stock",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"description\": \"Ardic LLC 2\",\n  \"name\": \"ARDC 2\",\n  \"price\": 280.000\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Deleting a stock from the system",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock/2",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock",
+												"2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "stock-exchange",
+							"item": [
+								{
+									"name": "List one stock exchange with all stocks",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock-exchange/NASDAQ",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock-exchange",
+												"NASDAQ"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/stock-exchange/:name",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"stock-exchange",
+														":name"
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<long>\",\n  \"liveInMarket\": \"<boolean>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Add a stock to the stock exchange",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock-exchange/:name?stockName=ARDC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock-exchange",
+												":name"
+											],
+											"query": [
+												{
+													"key": "stockName",
+													"value": "ARDC"
+												}
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "NASDAQ"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/stock-exchange/:name?stockName=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"stock-exchange",
+														":name"
+													],
+													"query": [
+														{
+															"key": "stockName",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "<string>"
+										}
+									]
+								},
+								{
+									"name": "Delete stock from the stock exchange",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "lion",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ing",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/stock-exchange/:name?stockName=ARDC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"stock-exchange",
+												":name"
+											],
+											"query": [
+												{
+													"key": "stockName",
+													"value": "ARDC",
+													"description": "(Required) "
+												}
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "NASDAQ",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/stock-exchange/:name?stockName=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"stock-exchange",
+														":name"
+													],
+													"query": [
+														{
+															"key": "stockName",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "<string>"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:6070"
+		}
+	]
+}
