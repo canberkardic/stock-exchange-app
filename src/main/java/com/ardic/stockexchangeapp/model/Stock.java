@@ -20,11 +20,12 @@ import java.util.Set;
 public class Stock {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String name;
     private String description;
+    @Column(name = "current_price")
     private BigDecimal currentPrice;
     @UpdateTimestamp
     @Column(name = "last_updated", nullable = false, updatable = false)

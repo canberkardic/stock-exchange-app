@@ -16,11 +16,12 @@ import java.util.Set;
 @Table(name = "stock_exchange")
 public class StockExchange {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String name;
     private String description;
+    @Column(name = "live_in_market")
     private Boolean liveInMarket;
 
 
