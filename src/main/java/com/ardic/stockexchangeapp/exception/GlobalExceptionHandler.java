@@ -18,6 +18,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -30,27 +31,6 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<?> handleBadCredentialsException(UsernameNotFoundException e) {
-        log.info("User Not Found: {}", e.getMessage());
-        return new ResponseEntity<>(ErrorResponseBuilder.builder()
-                .date(LocalDateTime.now())
-                .message("UserName Not Found")
-                .description(List.of(e.getMessage()))
-                .build(),
-                HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<?> handleUsernameNotFoundException(UsernameNotFoundException e) {
-        log.info("User Not Found: {}", e.getMessage());
-        return new ResponseEntity<>(ErrorResponseBuilder.builder()
-                .date(LocalDateTime.now())
-                .message("UserName Not Found")
-                .description(List.of(e.getMessage()))
-                .build(),
-                HttpStatus.UNAUTHORIZED);
-    }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex) {
@@ -149,6 +129,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public void handleAccessDeniedException(HttpServletResponse res) throws IOException {
         res.sendError(HttpStatus.FORBIDDEN.value(), "Access denied");
+    }
+
+    @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
+    public void handleUnauthorizedExceotion(HttpServletResponse res) throws IOException {
+        res.sendError(HttpStatus.UNAUTHORIZED.value(), "Unauthorized");
     }
 }
 
