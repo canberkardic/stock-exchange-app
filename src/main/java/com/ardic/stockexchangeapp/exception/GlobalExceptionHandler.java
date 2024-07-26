@@ -1,4 +1,4 @@
-package com.ardic.stockexchangeapp.exceptions;
+package com.ardic.stockexchangeapp.exception;
 
 import jakarta.servlet.http.HttpServletResponse;
 

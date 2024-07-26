@@ -1,6 +1,4 @@
-package com.ardic.stockexchangeapp.exceptions;
-
-import jakarta.persistence.EntityNotFoundException;
+package com.ardic.stockexchangeapp.exception;
 
 public class StockNotFoundException extends RuntimeException {
 

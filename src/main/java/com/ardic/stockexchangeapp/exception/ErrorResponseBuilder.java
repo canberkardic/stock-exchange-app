@@ -1,4 +1,4 @@
-package com.ardic.stockexchangeapp.exceptions;
+package com.ardic.stockexchangeapp.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

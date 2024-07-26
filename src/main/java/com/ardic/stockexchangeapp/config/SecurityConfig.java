@@ -1,10 +1,10 @@
 package com.ardic.stockexchangeapp.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +20,19 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    @Value("${security.users.admin.username}")
+    private String adminUsername;
+
+    @Value("${security.users.admin.password}")
+    private String adminPassword;
+
+    @Value("${security.users.user.username}")
+    private String regularUserUsername;
+
+    @Value("${security.users.user.password}")
+    private String regularUserPassword;
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -27,8 +40,8 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        UserDetails admin = User.withUsername("ing").password(passwordEncoder().encode("lion")).roles("ADMIN").build();
-        UserDetails user = User.withUsername("user").password(passwordEncoder().encode("123")).roles("USER").build();
+        UserDetails admin = User.withUsername(adminUsername).password(passwordEncoder().encode(adminPassword)).roles("ADMIN").build();
+        UserDetails user = User.withUsername(regularUserUsername).password(passwordEncoder().encode(regularUserPassword)).roles("USER").build();
 
         return new InMemoryUserDetailsManager(admin,user);
     }

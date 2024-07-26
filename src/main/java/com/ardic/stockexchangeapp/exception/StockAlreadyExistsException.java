@@ -1,4 +1,4 @@
-package com.ardic.stockexchangeapp.exceptions;
+package com.ardic.stockexchangeapp.exception;
 
 public class StockAlreadyExistsException extends RuntimeException {
     public StockAlreadyExistsException(String stockName, String stockExchangeName) {

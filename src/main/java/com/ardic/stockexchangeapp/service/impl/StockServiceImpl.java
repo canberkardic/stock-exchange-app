@@ -1,6 +1,6 @@
 package com.ardic.stockexchangeapp.service.impl;
 
-import com.ardic.stockexchangeapp.exceptions.StockNotFoundException;
+import com.ardic.stockexchangeapp.exception.StockNotFoundException;
 import com.ardic.stockexchangeapp.model.Stock;
 import com.ardic.stockexchangeapp.model.StockExchange;
 import com.ardic.stockexchangeapp.model.dto.CreateStockDTO;
