@@ -32,7 +32,7 @@ public class StockExchange {
     @ManyToMany
     @JoinTable(name = "stock_exchange_stock",
             joinColumns = {@JoinColumn(name = "stock_exchange_id")}, inverseJoinColumns = {@JoinColumn(name = "stock_id")})
-    @JsonIgnore
+    @JsonIgnoreProperties("stockExchanges")
     private Set<Stock> stocks = new HashSet<>();
 
 }

@@ -2,6 +2,7 @@ package com.ardic.stockexchangeapp.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,17 +37,22 @@ public class Stock {
     private Timestamp lastUpdate;
 
     @ManyToMany(mappedBy = "stocks")
-    @JsonIgnore
+    @JsonIgnoreProperties("stocks")
     private Set<StockExchange> stockExchanges = new HashSet<>();
 
+
     public void addToStockExchange(StockExchange stockExchange) {
-        this.stockExchanges.add(stockExchange);
-        stockExchange.getStocks().add(this);
+        if (stockExchange != null && !stockExchanges.contains(stockExchange)) {
+            stockExchanges.add(stockExchange);
+            stockExchange.getStocks().add(this);
+        }
     }
 
     public void removeFromStockExchange(StockExchange stockExchange) {
-        this.stockExchanges.remove(stockExchange);
-        stockExchange.getStocks().remove(this);
+        if (stockExchange != null && stockExchanges.contains(stockExchange)) {
+            stockExchanges.remove(stockExchange);
+            stockExchange.getStocks().remove(this);
+        }
     }
 
     @PreRemove
