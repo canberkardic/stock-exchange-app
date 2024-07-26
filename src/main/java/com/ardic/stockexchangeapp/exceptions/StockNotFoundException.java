@@ -2,7 +2,7 @@ package com.ardic.stockexchangeapp.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 
-public class StockNotFoundException extends EntityNotFoundException {
+public class StockNotFoundException extends RuntimeException {
 
     private static final String DEFAULT_MESSAGE = "Stock not found with parameter: ";
 

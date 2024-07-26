@@ -1,13 +1,11 @@
 package com.ardic.stockexchangeapp.controller;
 
-import com.ardic.stockexchangeapp.model.Stock;
 import com.ardic.stockexchangeapp.model.StockExchange;
 import com.ardic.stockexchangeapp.service.StockExchangeService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,7 +25,7 @@ public class StockExchangeController {
     public ResponseEntity<String> addStockToExchange(@PathVariable("name") String stockExchangeName,
                                                    @RequestParam("stockName") String stockName) {
         stockExchangeService.addStockToExchange(stockExchangeName, stockName);
-        return ResponseEntity.ok("Stock added to stock exchange");
+        return ResponseEntity.ok("Stock added to stock exchange.");
     }
     @DeleteMapping(value = "/{name}")
     public ResponseEntity<String> deleteStockFromExchange(@PathVariable("name") String stockExchangeName,
