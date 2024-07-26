@@ -123,15 +123,15 @@ public class GlobalExceptionHandler {
                 .description(List.of(ex.getMessage()))
                 .build(), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(AccessDeniedException.class)
-    public void handleAccessDeniedException(HttpServletResponse res) throws IOException {
-        res.sendError(HttpStatus.FORBIDDEN.value(), "Access denied");
+    public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException ex) {
+        log.info("Access denied exception occurred: {}", ex.getMessage());
+        return new ResponseEntity<>(ErrorResponseBuilder.builder()
+                .date(LocalDateTime.now())
+                .message("Access denied for the current user!")
+                .description(List.of(ex.getMessage()))
+                .build(), HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
-    public void handleUnauthorizedExceotion(HttpServletResponse res) throws IOException {
-        res.sendError(HttpStatus.UNAUTHORIZED.value(), "Unauthorized");
-    }
 }
 
