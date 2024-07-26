@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/api/v1/stock-exchange")
 public class StockExchangeController {
     private final StockExchangeService stockExchangeService;

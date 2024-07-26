@@ -5,12 +5,10 @@ import com.ardic.stockexchangeapp.model.dto.UpdateStockPriceDTO;
 import com.ardic.stockexchangeapp.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/api/v1/stock")
 public class StockController {
     private final StockService stockService;

@@ -10,11 +10,13 @@ import com.ardic.stockexchangeapp.repository.StockRepository;
 import com.ardic.stockexchangeapp.service.StockExchangeService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @Transactional
 @Service
 public class StockExchangeServiceImp implements StockExchangeService {
