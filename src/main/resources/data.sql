@@ -14,8 +14,8 @@ INSERT INTO stock (name, description, current_price, last_updated) VALUES ('IBM'
 INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('NYSE', 'New York Stock Exchange', TRUE);
 INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('NASDAQ', 'NASDAQ Stock Market', TRUE);
 INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('LSE', 'London Stock Exchange', TRUE);
-INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('JPX', 'Japan Exchange Group', TRUE);
-INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('SSE', 'Shanghai Stock Exchange', TRUE);
+INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('JPX', 'Japan Exchange Group', FALSE);
+INSERT INTO stock_exchange (name, description, live_in_market) VALUES ('SSE', 'Shanghai Stock Exchange', FALSE);
 
 
 INSERT INTO stock_exchange_stock (stock_exchange_id, stock_id) VALUES (1, 1);
