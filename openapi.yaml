@@ -1,0 +1,188 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition for Stock Exchange Application
+  version: v1
+servers:
+  - url: http://localhost:6070
+    description: Generated server url
+paths:
+  /api/v1/stock:
+    put:
+      tags:
+        - stock-controller
+      summary: Update the price of a stock
+      operationId: updateCurrentPrice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStockPriceDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    post:
+      tags:
+        - stock-controller
+      summary: Create a stock
+      operationId: createStock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStockDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/v1/stock-exchange/{name}:
+    get:
+      tags:
+        - stock-exchange-controller
+      summary: List one stock exchange with all stocks
+      operationId: stockExchangeStocks
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StockExchange'
+    post:
+      tags:
+        - stock-exchange-controller
+      summary: Add a stock to the stock exchange
+      operationId: addStockToExchange
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: stockName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+        - stock-exchange-controller
+      summary: Delete stock from the stock exchange
+      operationId: deleteStockFromExchange
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: stockName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/stock/{id}:
+    delete:
+      tags:
+        - stock-controller
+      summary: Deleting a stock from the system
+      operationId: deleteStockByName
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    UpdateStockPriceDTO:
+      required:
+        - updatedPrice
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id of the stock
+          format: int64
+          example: 123
+        updatedPrice:
+          type: number
+          description: The price requested to update the stock
+          example: 175
+    CreateStockDTO:
+      required:
+        - description
+        - name
+        - price
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the stock
+          example: AAPL
+        description:
+          type: string
+          description: Description of the stock
+          example: Apple Inc.
+        price:
+          type: number
+          description: Current price
+          example: 150
+    StockExchange:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id of the stock exchange
+          format: int64
+          example: 123
+        name:
+          type: string
+          description: Name of the stock exchange
+          example: NASDAQ
+        description:
+          type: string
+          description: Description of the stock exchange
+          example: NASDAQ Stock Market
+        liveInMarket:
+          type: boolean
+          description: 'Defines if stock is live in market (has >=5 stocks) '
+          example: true
