@@ -31,7 +31,7 @@ During the start-up process, dummy datas are populated to related tables  by `da
 ## Stock Controller
 
 The `StockController` handles the operations related to the stocks.  <br>
-It's communicating with the `StockServiceImpl` to perform business logic operations and handles HTTP requests and responses for the following endpoints:
+It's communicating with the `StockServiceImpl` and handles HTTP requests and responses for the following endpoints:
 
 - `POST /api/v1/stock`: Creates a new stock.
 - `DELETE /api/v1/stock/{id}`: Deletes a stock by id
@@ -41,9 +41,9 @@ It's communicating with the `StockServiceImpl` to perform business logic operati
 ## Stock Exchange Controller
 
 The `StockExchangeController` class manages operations related to stock exchanges in the system.<br>
-It's communicating with the `StockExchangeServiceImpl` to perform business logic operations and handles HTTP requests and responses for the following endpoints:
+It's communicating with the `StockExchangeServiceImpl`  handles HTTP requests and responses for the following endpoints:
 
-- `GET /api/v1/stock-exchange/{name}`: Retrieves all stocks associated with a specific stock exchange.
+- `GET /api/v1/stock-exchange/{name}`: Lists all stocks related with a specific stock exchange.
 - `DELETE /api/v1/stock-exchange/{name}?stockName={stockName}`: Deletes a stock from a specific stock exchange.
 - `POST /api/v1/stock-exchange/{name}?stockName={stockName}`: Adds a stock to a specific stock exchange.
 
