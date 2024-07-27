@@ -28,7 +28,8 @@ public class StockExchangeController {
     public ResponseEntity<String> addStockToExchange(@PathVariable("name") String stockExchangeName,
                                                    @RequestParam("stockName") String stockName) {
         stockExchangeService.addStockToExchange(stockExchangeName, stockName);
-        return ResponseEntity.ok("Stock added to stock exchange.");
+        String responseMessage = String.format("Stock '%s' added to Stock Exchange '%s'.", stockName, stockExchangeName);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @Operation(summary = "Delete stock from the stock exchange")
@@ -36,7 +37,8 @@ public class StockExchangeController {
     public ResponseEntity<String> deleteStockFromExchange(@PathVariable("name") String stockExchangeName,
                                                         @RequestParam("stockName")  String stockName) {
         stockExchangeService.deleteStockFromExchange(stockExchangeName, stockName);
-        return ResponseEntity.ok("Stock exchange removed.");
+        String responseMessage = String.format("Stock '%s' removed from Stock Exchange '%s'.", stockName, stockExchangeName);
+        return ResponseEntity.ok(responseMessage);
     }
 
 

@@ -1,5 +1,7 @@
 package com.ardic.stockexchangeapp.service.impl;
 
+import com.ardic.stockexchangeapp.exception.StockAlreadyExistsException;
+import com.ardic.stockexchangeapp.exception.StockExchangeNotFoundException;
 import com.ardic.stockexchangeapp.exception.StockNotFoundException;
 import com.ardic.stockexchangeapp.model.Stock;
 import com.ardic.stockexchangeapp.model.StockExchange;
@@ -39,10 +41,12 @@ public class StockServiceImpl implements StockService {
         return stock.get();
     }
 
+
     @Override
     public void deleteStock(Long id) {
         Stock stock = findStockById(id);
         for (StockExchange stockExchange : stock.getStockExchanges()) {
+            stockExchange.getStocks().remove(stock);
             boolean liveInMarket = stockExchange.getStocks().size() > 5;
             stockExchange.setLiveInMarket(liveInMarket);
         }
@@ -59,13 +63,19 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Stock createStock(CreateStockDTO stockDTO) {
-        Stock stock = new Stock();
 
+        if (stockRepository.existsByName(stockDTO.getName())) {
+            throw new StockAlreadyExistsException(stockDTO.getName());
+        }
+
+        Stock stock = new Stock();
         stock.setName(stockDTO.getName());
-        stock.setDescription(stockDTO.getName());
+        stock.setDescription(stockDTO.getDescription());
         stock.setCurrentPrice(stockDTO.getPrice());
 
         return stockRepository.save(stock);
-
     }
+
+
+
 }

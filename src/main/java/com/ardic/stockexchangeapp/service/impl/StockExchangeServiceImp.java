@@ -1,6 +1,6 @@
 package com.ardic.stockexchangeapp.service.impl;
 
-import com.ardic.stockexchangeapp.exception.StockAlreadyExistsException;
+import com.ardic.stockexchangeapp.exception.StockAlreadyExistsInExchangeException;
 import com.ardic.stockexchangeapp.exception.StockExchangeNotFoundException;
 import com.ardic.stockexchangeapp.exception.StockNotFoundException;
 import com.ardic.stockexchangeapp.model.Stock;
@@ -56,10 +56,16 @@ public class StockExchangeServiceImp implements StockExchangeService {
         Stock stock = findStockByName(stockName);
         StockExchange stockExchange = findStockExchangeByName(stockExchangeName);
 
-        stock.removeFromStockExchange(stockExchange);
+        if (stock.getStockExchanges().contains(stockExchange)) {
+            stock.getStockExchanges().remove(stockExchange);
+            stockExchange.getStocks().remove(stock);
+        }
+
         updateLiveInMarketStatus(stockExchange);
         stockExchangeRepository.save(stockExchange);
     }
+
+
 
     @Override
     public void addStockToExchange(String stockExchangeName, String stockName) {
@@ -67,10 +73,12 @@ public class StockExchangeServiceImp implements StockExchangeService {
         StockExchange stockExchange = findStockExchangeByName(stockExchangeName);
 
         if (stockExchange.getStocks().contains(stock)) {
-            throw new StockAlreadyExistsException(stockName, stockExchangeName);
+            throw new StockAlreadyExistsInExchangeException(stockName, stockExchangeName);
         }
 
-        stock.addToStockExchange(stockExchange);
+        stock.getStockExchanges().add(stockExchange);
+        stockExchange.getStocks().add(stock);
+
         updateLiveInMarketStatus(stockExchange);
         stockExchangeRepository.save(stockExchange);
     }

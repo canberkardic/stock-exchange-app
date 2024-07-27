@@ -1,7 +1,5 @@
 package com.ardic.stockexchangeapp.exception;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +14,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 import java.util.List;
@@ -92,6 +88,16 @@ public class GlobalExceptionHandler {
                 .description(List.of(e.getMessage()))
                 .build(),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(StockAlreadyExistsInExchangeException.class)
+    public ResponseEntity<?> handleStockAlreadyExistsInExchangeException(StockAlreadyExistsInExchangeException ex) {
+        log.info("Stock already exists in exchange exception occurred: {}", ex.getMessage());
+        return new ResponseEntity<>(ErrorResponseBuilder.builder()
+                .date(LocalDateTime.now())
+                .message("Conflict : Stock already exists in the exchange")
+                .description(List.of(ex.getMessage()))
+                .build(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(StockAlreadyExistsException.class)

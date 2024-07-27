@@ -19,7 +19,8 @@ public class StockController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> createStock(@RequestBody CreateStockDTO createStockDTO) {
         stockService.createStock(createStockDTO);
-        return ResponseEntity.ok("Stock added.");
+        String responseMessage = String.format("'%s' Stock created", createStockDTO.getName());
+        return ResponseEntity.ok(responseMessage );
     }
 
 
@@ -27,7 +28,8 @@ public class StockController {
     @PutMapping
     public ResponseEntity<String> updateCurrentPrice(@RequestBody UpdateStockPriceDTO updateStockPriceDTO) {
         stockService.updateStockPrice(updateStockPriceDTO.getId(), updateStockPriceDTO.getUpdatedPrice());
-        return ResponseEntity.ok("Stock price updated.");
+        String responseMessage = String.format("Stock price updated to '%s'", updateStockPriceDTO.getUpdatedPrice());
+        return ResponseEntity.ok(responseMessage);
     }
 
 
