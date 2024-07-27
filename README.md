@@ -69,6 +69,13 @@ You can access the Swagger API documentation and usage at below URL
 http://localhost:6070/swagger-ui/index.html
 ```
 
+
+## API Collections
+
+You can access the Postman Collections to import and directly consume the APIs.
+It's located in the ```assets``` folder.
+
+
 ## H2 Database
 
 The username and password can be found in the `application.properties` file.<br>
