@@ -74,7 +74,7 @@ http://localhost:6070/swagger-ui/index.html
 The username and password can be found in the `application.properties` file.<br>
 You can log in to the H2 database console at the following URL:
 ```
-http://localhost:6070/h2-console/login.do
+http://localhost:6070/h2-console
 ```
 
 ## Initial Data Details for Testing
