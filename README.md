@@ -27,7 +27,6 @@ Other than the layered archictecture, the project includes;
 The data is stored in the `STOCK`,`STOCK_EXCHANGE`,`STOCK_EXCHANGE_STOCK` tables in an H2 database.<br> 
 During the start-up process, dummy datas are populated to related tables  by `data.sql` file.<br>
 
-There are 2 
 
 ## Stock Controller
 
